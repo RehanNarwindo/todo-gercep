@@ -8,7 +8,7 @@ import (
     "sync"
     "time"
 
-    pb "todo-grpc/proto"
+    pb "todo-gercep/proto"
     "google.golang.org/grpc"
 )
 

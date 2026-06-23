@@ -29,11 +29,18 @@ const (
 // TodoServiceClient is the client API for TodoService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// Service Interface - ini yang akan dipanggil client
 type TodoServiceClient interface {
+	// Create: Tambah tugas baru
 	CreateTask(ctx context.Context, in *CreateTaskRequest, opts ...grpc.CallOption) (*TaskResponse, error)
+	// Read: Lihat semua tugas
 	ListTasks(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*TaskListResponse, error)
+	// Read: Lihat 1 tugas
 	GetTask(ctx context.Context, in *GetTaskRequest, opts ...grpc.CallOption) (*TaskResponse, error)
+	// Update: Tandai selesai
 	CompleteTask(ctx context.Context, in *GetTaskRequest, opts ...grpc.CallOption) (*TaskResponse, error)
+	// Delete: Hapus tugas
 	DeleteTask(ctx context.Context, in *GetTaskRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 }
 
@@ -98,11 +105,18 @@ func (c *todoServiceClient) DeleteTask(ctx context.Context, in *GetTaskRequest, 
 // TodoServiceServer is the server API for TodoService service.
 // All implementations must embed UnimplementedTodoServiceServer
 // for forward compatibility.
+//
+// Service Interface - ini yang akan dipanggil client
 type TodoServiceServer interface {
+	// Create: Tambah tugas baru
 	CreateTask(context.Context, *CreateTaskRequest) (*TaskResponse, error)
+	// Read: Lihat semua tugas
 	ListTasks(context.Context, *EmptyRequest) (*TaskListResponse, error)
+	// Read: Lihat 1 tugas
 	GetTask(context.Context, *GetTaskRequest) (*TaskResponse, error)
+	// Update: Tandai selesai
 	CompleteTask(context.Context, *GetTaskRequest) (*TaskResponse, error)
+	// Delete: Hapus tugas
 	DeleteTask(context.Context, *GetTaskRequest) (*DeleteResponse, error)
 	mustEmbedUnimplementedTodoServiceServer()
 }
